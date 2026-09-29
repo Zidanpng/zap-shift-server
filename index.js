@@ -129,6 +129,7 @@ async function run() {
         mode: "payment",
         metadata: {
           parcelId: paymentInfo.parcelId,
+          parcelName: paymentInfo.parcelName,
         },
         customer_email: paymentInfo.senderEmail,
         success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success?session_id={CHECKOUT_SESSION_ID}`,
@@ -238,6 +239,8 @@ async function run() {
       const query = {
         customerEmail: email,
       };
+
+      console.log("headers", req.headers);
 
       const result = await paymentCollection
         .find(query)
